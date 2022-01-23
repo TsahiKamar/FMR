@@ -1,0 +1,20 @@
+<html dir="rtl">
+
+<h1 mat-dialog-title>לקוח <strong>{{action}}</strong></h1>
+
+     <mat-form-field>
+          <mat-label>תז</mat-label>
+          <input matInput [(ngModel)]="local_data.customerId" placeholder="">              
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>שם מלא</mat-label>
+        <input matInput [(ngModel)]="local_data.fullName" placeholder="">                
+    </mat-form-field>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="save()" mat-flat-button color="primary">Save</button>
+  <button mat-button (click)="close()" mat-flat-button color="warn">Cancel</button>
+</div>
+
+</html>

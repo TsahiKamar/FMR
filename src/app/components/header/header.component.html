@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html dir="rtl">
+   <header>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   </header>
+<body>
+  
+  <!--<mat-toolbar color="primary">
+    <button mat-icon-button><mat-icon >menu</mat-icon></button>
+    
+    <button mat-button routerLink="/home" routerLinkActive="active">עמוד הבית</button>
+    <button mat-button routerLink="/products" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">רשימת המוצרים</button>
+    
+
+    <button mat-button routerLink="/customerDetails" routerLinkActive="active">פרטי לקוח</button>
+  
+  </mat-toolbar>-->
+
+
+  <mat-toolbar color="primary">
+    <span class="fill-remaining-space">
+      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <span (mouseleave)="menuTrigger.closeMenu()">
+        <button mat-menu-item routerLink="/home" routerLinkActive="active">
+          <mat-icon>home</mat-icon>
+          <span>עמוד הבית</span>
+    </button>
+    <button mat-menu-item routerLink="/products" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">
+          <span>רשימת המוצרים</span>
+    </button>
+    <button mat-menu-item routerLink="/customerDetails" routerLinkActive="active">
+        <mat-icon>people_outline</mat-icon>
+        <span>פרטי לקוח</span>
+    </button>
+    <!--<button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+    </button>-->
+    </span>
+    </mat-menu>
+    </span>
+    <span class="fill-remaining-space">FMR Application</span>
+  </mat-toolbar>
+
+
+  
+</body>
+</html>

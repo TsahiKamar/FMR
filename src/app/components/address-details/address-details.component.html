@@ -1,0 +1,93 @@
+<html dir="rtl">
+ 
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>כתובת</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <section class="example-section">
+      
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+ 
+
+      <mat-form-field>
+            <mat-label>מזהה לקוח</mat-label>
+            <input matInput id="customerId" formControlName="customerId" required>                
+      </mat-form-field>
+    
+
+      <mat-form-field>
+        <mat-label>סוג</mat-label>
+        <input matInput  id="type" formControlName="type" required>                
+      </mat-form-field>
+    
+      
+
+      <mat-form-field>
+        <mat-label>עיר</mat-label>
+        <input matInput  id="city" formControlName="city" required>                
+      </mat-form-field>
+      <mat-form-field>
+         <mat-label>רחוב</mat-label>street
+         <input matInput  id="street" formControlName="street">                
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>מס' בית</mat-label>
+        <input matInput  id="houseNum" formControlName="houseNum">                
+      </mat-form-field>
+ 
+      <mat-form-field>
+        <mat-label>ת.ד.</mat-label>
+        <input matInput  id="pob" formControlName="pob">                
+      </mat-form-field>
+     
+ 
+      <mat-form-field>
+        <mat-label>מיקוד</mat-label>
+        <input matInput  id="zip" formControlName="zip">                
+      </mat-form-field>
+     
+      
+      
+      <br>
+      
+    <!--<button mat-button mat-flat-button color="primary" (click)="add()">שמירה</button>-->
+
+      
+      
+    <button mat-button type="submit" mat-flat-button color="gray">שמירה</button>
+      
+        
+      </form>
+      </section>
+      
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+      </mat-card>
+      
+      <!---ownersForm.get('owners').value-->
+      <!--<tr class="group" style="cursor: pointer" *ngFor="let owner of owners; let i = index">
+        <td >{{owner.idNum}}</td>
+        <td>{{owner.firstName}}</td>
+        <td>{{owner.lastName}}</td>
+        <td>{{owner.eMail}} </td>
+      </tr>-->
+      
+     
+      
+      <p>
+        form :
+        {{ form.value | json }}
+      </p>
+
+
+      
+      
+      
+</html>
+      

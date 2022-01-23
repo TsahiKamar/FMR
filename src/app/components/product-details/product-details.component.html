@@ -1,0 +1,96 @@
+<html dir="rtl">
+ 
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>פרטי מוצר</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <section class="example-section">
+      
+      <form [formGroup]="form" (ngSubmit)="save()">
+ 
+
+      <mat-form-field>
+            <mat-label>מזהה לקוח</mat-label>
+            <input matInput  id="customerId" formControlName="customerId">                
+      </mat-form-field>
+    
+
+      <mat-form-field>
+        <mat-label>מזהה</mat-label>
+        <input matInput  id="productId" formControlName="productId" required>                
+      </mat-form-field>
+     
+      <mat-form-field>
+        <mat-label>שם</mat-label>
+        <input matInput  id="name" formControlName="name" required>                
+      </mat-form-field>
+ 
+      <mat-form-field>
+        <mat-label>תיאור</mat-label>
+        <input matInput  id="description" formControlName="description">                
+      </mat-form-field>
+ 
+
+      <mat-form-field>
+        <mat-label>ריבית</mat-label>
+        <input matInput  id="interestPercents" formControlName="interestPercents" required>                
+      </mat-form-field>
+     
+      <mat-form-field>
+        <mat-label>סכום הפקדה</mat-label>
+        <input matInput  id="deposit" formControlName="deposit" required>                
+      </mat-form-field>
+ 
+      <mat-form-field>
+        <mat-label>ת. פתיחת הקופה</mat-label>
+        <input matInput  id="date" formControlName="date" required>                
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>רווח</mat-label>
+        <input matInput  id="profit" formControlName="profit">                
+      </mat-form-field>
+      
+      
+      <br>
+      
+    <!--<button mat-button mat-flat-button color="primary" (click)="add()">שמירה</button>-->
+
+      
+      
+    <button mat-button type="submit" mat-flat-button color="gray">שמירה</button>
+      
+        
+      </form>
+      </section>
+      
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+      </mat-card>
+      
+      <!---ownersForm.get('owners').value-->
+      <!--<tr class="group" style="cursor: pointer" *ngFor="let owner of owners; let i = index">
+        <td >{{owner.idNum}}</td>
+        <td>{{owner.firstName}}</td>
+        <td>{{owner.lastName}}</td>
+        <td>{{owner.eMail}} </td>
+      </tr>-->
+      
+     
+      
+      <p>
+        form :
+        {{ form.value | json }}
+      </p>
+
+
+      
+      
+      
+</html>
+      

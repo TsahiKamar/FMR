@@ -1,0 +1,49 @@
+<html dir="rtl">
+
+<h1 mat-dialog-title>הוספת כתובת<strong>{{action}}</strong></h1>
+
+<!--<div mat-dialog-content [formGroup]="form">-->
+   
+     <mat-form-field>
+          <mat-label>מזהה לקוח</mat-label>
+          <input matInput [(ngModel)]="local_data.customerId" placeholder=""><!--formControlName="id"-->                
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>סוג</mat-label>
+        <input matInput [(ngModel)]="local_data.type" placeholder=""><!--formControlName="fullName"-->                
+    </mat-form-field>
+
+
+
+    <mat-form-field>
+      <mat-label>עיר</mat-label>
+      <input matInput [(ngModel)]="local_data.city" placeholder=""><!--formControlName="id"-->                
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>רחוב</mat-label>
+    <input matInput [(ngModel)]="local_data.street" placeholder=""><!--formControlName="fullName"-->                
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>מס' בית</mat-label>
+  <input matInput [(ngModel)]="local_data.houseNum" placeholder=""><!--formControlName="id"-->                
+</mat-form-field>
+
+<mat-form-field>
+<mat-label>ת.ד.</mat-label>
+<input matInput [(ngModel)]="local_data.pob" placeholder=""><!--formControlName="fullName"-->                
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>מיקוד</mat-label>
+  <input matInput [(ngModel)]="local_data.zip" placeholder=""><!--formControlName="fullName"-->                
+  </mat-form-field>
+  
+<div mat-dialog-actions>
+  <button mat-button (click)="save()" mat-flat-button color="primary">Save</button>
+  <button mat-button (click)="close()" mat-flat-button color="warn">Cancel</button>
+</div>
+
+</html>
