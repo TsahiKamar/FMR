@@ -25,24 +25,12 @@ export class AddressComponent implements OnInit {
   constructor(private router: Router,private route: ActivatedRoute,public dialog: MatDialog) { }
 
   ngOnInit() {
-    
+    this.dataSource = null;
     this.addresses = [];
-
-    //orig this.properties = this.gService.getGeneral().Property;
-
     this.dataSource = this.addresses;
- 
   }
 
-  
-  saveDetails(newAddress: Address){
-  
-    alert('new newAddress arrived : ' + JSON.stringify(newAddress));
-    //tbc
-   
-  }
-
-  onRowClicked(row) {
+    onRowClicked(row) {
     // console.log('Row clicked: ', row);
     // console.log('selected row id :', row.id);
  
@@ -51,7 +39,6 @@ export class AddressComponent implements OnInit {
     // this.router.navigate(['/stepper']);
 
   }
-
   
   openDialog(action,obj) {
     if (obj) obj.action = action;

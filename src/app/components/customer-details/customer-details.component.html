@@ -10,7 +10,7 @@
 
       <section class="example-section">
       
-      <form [formGroup]="form" #f (ngSubmit)="save()">
+      <form [formGroup]="form" (ngSubmit)="save()">
  
       
       <mat-form-field>
@@ -140,13 +140,13 @@
    
 
 
-
+      <button mat-button mat-flat-button type="submit" color="accent">שמור</button>
+    
     <button mat-button mat-flat-button color="accent" (click)="edit()">עריכה</button>
     <!--<button mat-button mat-flat-button color="primary" (click)="profitCalc()">חשב רווח</button>-->
 
       
 
-    <button mat-button mat-flat-button type="submit" color="accent">שמור</button>
           
       </form>
       </section>

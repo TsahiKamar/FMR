@@ -11,12 +11,13 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
 
   { path: 'products', component: ProductComponent },
+  { path: 'products/:customerId', component: ProductDetailsComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },
 
   { path: 'customers', component: CustomerComponent },
   { path: 'customerDetails', component: CustomerDetailsComponent },
 
-  { path: 'customerDetails/:id', component: CustomerDetailsComponent }
+  { path: 'customerDetails?id=:id', component: CustomerDetailsComponent }
 
 ];
 

@@ -35,25 +35,25 @@ public addCustomer(request: Customer):Observable<any> {
 
 
 public getCustomerDetails(id:string):Observable<any> {
-  return this.http.get<Customer>('http://localhost:63281/Customer/GetCustomerDetails/' + id,this.options)
+  return this.http.get<Customer>(`http://localhost:63281/Customer/GetCustomerDetails?id=${id}`,this.options)
   .pipe(
-    map((res: Customer) => res )//OK res["data"])
+    map((res: Customer) => res )
   )
   }
 
   
   public updateCustomerDetails(request: Customer):Observable<any> {
-    return this.http.put<any>('http://localhost:63281/Customer/customerDetailsUpdate',request,this.options)
+    return this.http.put<any>('http://localhost:63281/Customer/updateCustomerDetails',request,this.options)
     .pipe(
-      map((res: any) => res )// res["data"])
+      map((res: any) => res )
     )    
    
   }
 
-  public getProducts():Observable<any> {
-    return this.http.get<Product>('http://localhost:63281/Customer/products',this.options)
+  public getProducts(customerId?:string):Observable<any> {
+    return this.http.get<Product>(`http://localhost:63281/Customer/products?customerId=${customerId}`,this.options)
     .pipe(
-      map((res: Product) => res )//OK res["data"])
+      map((res: Product) => res )
     )
     }
    

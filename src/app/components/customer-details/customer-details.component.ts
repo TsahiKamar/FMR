@@ -2,7 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -23,40 +23,41 @@ export class CustomerDetailsComponent implements OnInit,OnDestroy {
 
   isDisabled: boolean = false;
 
-  //temp
-  //phones: Phone[];
- 
   constructor(private router: Router,private route: ActivatedRoute,private custService: CustomerService,private fb: FormBuilder) { }
 
   ngOnInit() {
 
-      this.id = this.route.snapshot.params.id;
-      this.customerId = this.route.snapshot.params.custimerId;
-      this.fullName = this.route.snapshot.params.fullName;
+  
+      this.route.queryParams.subscribe(params => {
+        this.id = params['id'];
+        this.customerId = params['customerId'];
+        this.fullName = params['fullName'];
+      
+      });
+  
 
       this.form = new FormGroup({
-        customerId:new FormControl({value: this.customerId , disabled: this.isDisabled},Validators.required),// this.customer ? this.customer.customerId
-        fullName: new FormControl({value: this.fullName, disabled: this.isDisabled},Validators.required),//this.customer ? this.customer.fullName : ""
-   
-        addresses: new FormArray([]),
-        phones: new FormArray([]),
-        products: new FormArray([])
+        customerId:new FormControl({value: this.customerId , disabled: this.isDisabled},Validators.required),
+        fullName: new FormControl({value: this.fullName, disabled: this.isDisabled},Validators.required),
+        addresses: this.fb.array([]), 
+        phones: this.fb.array([]) ,
+        products: this.fb.array([]), 
       });
 
-     //if (this.id !=='' && this.id !== undefined)
-     //{
+     if (this.id !=='' && this.id !== undefined)
+     {
         this.custService.getCustomerDetails(this.id).subscribe(result => {
            this.customer = result;
-           alert('getCustomerDetails result :' + result );
+
            console.log("getCustomerDetails result : " + result );
            this.form.patchValue(
             {
                 ...this.customer,
                 customerId:this.customer.customerId,
-                fullName:this.customer.fullName,
-                'addresses': this.customer.addresses,//this.customer ? this.customer.addresses : [],
-                'phones': this.customer.phones,//this.customer ? this.customer.phones : [],
-                'products': this.customer.products//this.customer ? this.customer.addresses : []
+                fullName:this.customer.fullName
+                //'addresses': this.customer["addresses"],//this.customer ? this.customer.addresses : [],
+                //'phones': this.customer["phones"],//this.customer ? this.customer.phones : [],
+                //'products': this.customer["products"]//this.customer ? this.customer.addresses : []
             }
          ); 
           
@@ -70,47 +71,55 @@ export class CustomerDetailsComponent implements OnInit,OnDestroy {
         // No errors
          }
         );
-     //}
+     }
 
-
-  //  });
-   
-   
-  //  this.form = new FormGroup({
-  //       customerId:new FormControl({value: this.customer ? this.customer.customerId : this.customerId , disabled: this.isDisabled},Validators.required),// this.customer ? this.customer.customerId
-  //       fullName: new FormControl({value: this.customer ? this.customer.fullName : this.fullName, disabled: this.isDisabled},Validators.required),//this.customer ? this.customer.fullName : ""
-   
-  //       addresses: new FormArray([]),
-  //       phones: new FormArray([]),
-  //       products: new FormArray([])
-  //     });
-
-  //     this.form.patchValue(
-  //     {
-  //         ...this.customer,
-  //         'addresses': this.customer ? this.customer.addresses : [],
-  //         'phones': this.customer ? this.customer.phones : [],
-  //         'products': this.customer ? this.customer.addresses : []
-  //     }
-  //  ); 
-    
   
 }
 
 savePhone(newPhone: Phone){
   let formArray = this.form.get("phones") as FormArray;
   formArray.push(new FormControl(newPhone));
- 
+  
+  this.form.patchValue(
+    {
+      //...this.phones,
+      ...newPhone
+    }
+  );
+}
+
+get phones() {
+  return this.form.controls["phones"] as FormArray;
 }
 
 saveAddress(newAddress: Address){
   let formArray = this.form.get("addresses") as FormArray;
   formArray.push(new FormControl(newAddress));
+  this.form.patchValue(
+    {
+      //...this.addresses,
+      ...newAddress
+    }
+  );
+}
+
+get addresses() {
+  return this.form.controls["addresses"] as FormArray;
 }
 
 saveProduct(newProduct: Product){
   let formArray = this.form.get("products") as FormArray;
   formArray.push(new FormControl(newProduct));
+  this.form.patchValue(
+    {
+      //...this.products,
+      ...newProduct
+    }
+  );
+}
+
+get products() {
+  return this.form.controls["products"] as FormArray;
 }
 
 
@@ -169,6 +178,7 @@ profitCalc(){
   
 }
 
+ 
 
 //getter used in html to loop through address
 get adddressControls(){
@@ -192,7 +202,7 @@ public GetControlValue(form: FormGroup, field: string){
 
 
 ngOnDestroy() {
-  this.sub.unsubscribe();
+  //this.sub.unsubscribe();
 }
 
 }

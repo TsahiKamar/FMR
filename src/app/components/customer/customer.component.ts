@@ -23,7 +23,7 @@ export class CustomerComponent implements OnInit {
   
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
   
-  selectedId:string = '';
+  //selectedId:string = '';
 
   constructor(private router: Router,private route: ActivatedRoute,public dialog: MatDialog,private custService: CustomerService) { }
 
@@ -48,8 +48,7 @@ export class CustomerComponent implements OnInit {
 
   
   onRowClicked(row) {
-     this.selectedId= row.id;
-     this.router.navigate(['/customerDetails'], { queryParams: { selectedId: this.selectedId, customerId: row.customerId,fullName:row.fullName}});
+     this.router.navigate(['/customerDetails'], { queryParams: { id: row.id, customerId: row.customerId,fullName:row.fullName}});
   }
 
   openDialog(action,obj) {

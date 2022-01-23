@@ -28,14 +28,21 @@ export class ProductComponent implements OnInit {
 
   selectedProductId! : number;
   isAddCustomerProduct: boolean = false;
+  customerId:string = undefined;
   
   constructor(private router: Router,private route: ActivatedRoute,private custService: CustomerService,public dialog: MatDialog) 
   { }
 
   ngOnInit() {
     
+     this.route.queryParams.subscribe(params => {
+       this.customerId = params['customerId'];
+     });
+
+
+    this.dataSource = null;
     
-    this.custService.getProducts().subscribe(result => {
+    this.custService.getProducts(this.customerId).subscribe(result => {
       this.products = [...result];
       this.dataSource = this.products;
   
@@ -112,33 +119,29 @@ export class ProductComponent implements OnInit {
 
       if(result.event == 'Add')
       {
-        this.addRowData(result.data);
+        this.addRowData(result.ata ,newProduct);
       } 
     });
   }
   
-  addRowData(row_obj){
+  addRowData(row_obj,newProduct){
 
-    const product = {id:undefined,updateDate:undefined,isDeleted:undefined, customerId : row_obj.customerId,fullName: row_obj.fullName, phones:[] ,addresses:[],products:[]};  
-       
-//     this.custService.addCustomer(product).subscribe(result => {
-//       console.log("addCustomer result : " + result );
-//     },
-//     error => {
-//         alert("addCustomer error : " + error);
-//     },
-//     () => {
-//         // 'onCompleted' callback.
-//         // No errors
-//     }
+  const request = {id:undefined,updateDate:undefined,isDeleted:undefined, customerId : row_obj.customerId,fullName: row_obj.fullName, phones:[] ,addresses:[],products:newProduct};  
+   
+  alert('add product request :' + JSON.stringify(request));
 
-//     );
+   this.custService.updateCustomerDetails(request).subscribe(result => {
+     console.log("updateCustomerDetails result : " + result );
+   },
+   error => {
+       alert("updateCustomerDetails error : " + error);
+   },
+   () => {
+       // No errors
+   }
+   );
 
-//     alert('customer:' + JSON.stringify(customer));
-//  this.customers.push(customer); //temp
- 
-//     this.table.renderRows();
-  
+
   }
   
 

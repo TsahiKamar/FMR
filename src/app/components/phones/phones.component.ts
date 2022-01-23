@@ -28,31 +28,15 @@ export class PhonesComponent implements OnInit {
   constructor(private router: Router,private route: ActivatedRoute,public dialog: MatDialog) { }//,private gService: GeneralService
 
   ngOnInit() {
-    
+    this.dataSource = null;
     this.phones = [];
-
-    //orig this.properties = this.gService.getGeneral().Property;
-
     this.dataSource = this.phones;
  
   }
 
-  // saveDetails(newPhone: Phone){
-  
-  //   alert('new phone arrived : ' + JSON.stringify(newPhone));
-  //   //tbc
-   
-  // }
-
-
-  onRowClicked(row) {
-    // console.log('Row clicked: ', row);
-    // console.log('selected row id :', row.id);
  
-    // this.selectedId= row.id;
-    // this.gService.setGeneralSelPropertyID(this.selectedId);
-    // this.router.navigate(['/stepper']);
-
+  onRowClicked(row) {
+    
   }
 
   openDialog(action,obj) {
